@@ -20,7 +20,7 @@ async function PricingPage() {
 
   return (
     <div>
-      <Pricing user={user} products={products} subscription={subscription} />
+      {/* <Pricing user={user} products={products} subscription={subscription} /> */}
     </div>
   );
 }
