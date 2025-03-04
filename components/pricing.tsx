@@ -37,6 +37,7 @@ interface Props {
 }
 
 export default function Pricing({ user, products, subscription }: Props) {
+  console.log(products);
   // "annual" state: true means billing yearly, false means monthly.
   const [annual, setAnnual] = useState(true);
   // Derive the billing interval based on the toggle.
@@ -198,7 +199,7 @@ export default function Pricing({ user, products, subscription }: Props) {
                   className="w-full"
                   disabled={priceIdLoading === price.id}
                 >
-                  {subscription ? "Manage" : "Subscribe"}
+                  {subscription ? "Manage" : "Get Started"}
                 </Button>
               </motion.div>
             );
