@@ -8,19 +8,24 @@ import {
 
 async function PricingPage() {
   const supabase = await createClient();
-  const [user, products, subscription] = await Promise.all([
+  const [user, productsResult, subscription] = await Promise.all([
     getUser(supabase),
     getProducts(supabase),
     getSubscription(supabase),
   ]);
 
-  const response = await getProducts(supabase);
-
-  console.log(response);
+  if ("message" in productsResult) {
+    console.error(productsResult.message);
+    return <div>Error loading products</div>;
+  }
 
   return (
     <div>
-      {/* <Pricing user={user} products={products} subscription={subscription} /> */}
+      <Pricing
+        user={user}
+        products={productsResult}
+        subscription={subscription}
+      />
     </div>
   );
 }
