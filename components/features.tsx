@@ -68,7 +68,10 @@ export function Features() {
   };
 
   return (
-    <section id="features" className="py-16 md:py-24 bg-purple-50/50">
+    <section
+      id="features"
+      className="py-16 md:py-24 bg-purple-50/50 dark:bg-purple-900 rounder-md"
+    >
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12 md:mb-16">
           <motion.h2
@@ -105,17 +108,7 @@ export function Features() {
               variants={itemVariants}
               className="group relative overflow-hidden rounded-xl border bg-background p-6 shadow-sm transition-all hover:shadow-md hover:border-purple-200"
             >
-              <div className="mb-4">
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    rotate: [0, 5, -5, 0],
-                    transition: { duration: 0.5 },
-                  }}
-                >
-                  {feature.icon}
-                </motion.div>
-              </div>
+              <div className="mb-4">{feature.icon}</div>
               <h3 className="text-xl font-bold">{feature.title}</h3>
               <p className="mt-2 text-muted-foreground">
                 {feature.description}
@@ -176,7 +169,7 @@ export function Features() {
               transition={{ duration: 0.6 }}
               className="flex flex-col gap-4"
             >
-              <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-purple-100 text-purple-700 border-purple-200">
+              <div className="inline-flex w-fit items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-purple-100 text-purple-700 border-purple-200">
                 <span>Featured</span>
               </div>
 

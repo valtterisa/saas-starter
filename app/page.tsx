@@ -26,8 +26,8 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
-      <main>
+    <div className="w-full min-h-screen bg-gradient-to-b from-background to-background/80">
+      <main className="w-full">
         <Hero />
         <Features />
         <Testimonials />

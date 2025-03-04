@@ -48,7 +48,7 @@ export function Navbar() {
             transition={{ delay: 0.2 }}
             className="text-xl font-bold purple-gradient-text"
           >
-            Quantum
+            Acme
           </motion.span>
         </Link>
 
@@ -83,19 +83,18 @@ export function Navbar() {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hover:text-purple-500 hover:bg-purple-100"
+            <Link
+              href={"/sign-in"}
+              className="hover:text-purple-500 hover:bg-purple-100 h-9 rounded-md px-3 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               Log in
-            </Button>
-            <Button
-              size="sm"
-              className="bg-purple-500 hover:bg-purple-600 text-white"
+            </Link>
+            <Link
+              href={"/sign-up"}
+              className="bg-purple-500 hover:bg-purple-600 text-white h-9 rounded-md px-3 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               Get Started
-            </Button>
+            </Link>
           </motion.div>
         </div>
 

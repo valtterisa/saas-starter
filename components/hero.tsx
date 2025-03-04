@@ -79,7 +79,7 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-purple-200 text-purple-700 hover:bg-purple-50 hover:text-purple-800 hover:border-purple-300 w-full sm:w-auto"
+                className="border-purple-200 hover:bg-purple-50 hover:text-purple-800 hover:border-purple-300 w-full sm:w-auto"
               >
                 Book a demo
               </Button>
@@ -119,13 +119,13 @@ export function Hero() {
           >
             <div className="relative mx-auto w-full max-w-[500px] aspect-[4/3]">
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-300/10 backdrop-blur-sm border border-purple-200 shadow-xl" />
-              {/* <Image
+              <Image
                 src="/placeholder.svg?height=600&width=800"
                 alt="Dashboard Preview"
                 width={800}
                 height={600}
                 className="relative rounded-xl shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-500"
-              /> */}
+              />
 
               {/* Floating elements - hidden on very small screens */}
               <motion.div

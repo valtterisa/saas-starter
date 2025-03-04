@@ -61,7 +61,7 @@ export function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-16 md:py-24 overflow-hidden">
+    <section id="testimonials" className="pt-16 overflow-hidden">
       <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -136,7 +136,7 @@ export function Testimonials() {
               <ChevronLeft className="size-4" />
               <span className="sr-only">Previous</span>
             </Button>
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
