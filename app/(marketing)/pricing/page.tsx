@@ -20,13 +20,11 @@ async function PricingPage() {
   }
 
   return (
-    <div>
-      <Pricing
-        user={user}
-        products={productsResult}
-        subscription={subscription}
-      />
-    </div>
+    <Pricing
+      user={user}
+      products={productsResult}
+      subscription={subscription}
+    />
   );
 }
 
