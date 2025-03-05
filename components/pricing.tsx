@@ -37,17 +37,12 @@ interface Props {
 }
 
 export default function Pricing({ user, products, subscription }: Props) {
-  console.log(products);
-  // "annual" state: true means billing yearly, false means monthly.
   const [annual, setAnnual] = useState(true);
-  // Derive the billing interval based on the toggle.
   const billingInterval = annual ? "year" : "month";
-
   const router = useRouter();
   const currentPath = usePathname();
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
 
-  // Framer Motion animation variants.
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -92,7 +87,6 @@ export default function Pricing({ user, products, subscription }: Props) {
 
     const stripe = await getStripe();
     stripe?.redirectToCheckout({ sessionId });
-
     setPriceIdLoading(undefined);
   };
 
@@ -134,7 +128,6 @@ export default function Pricing({ user, products, subscription }: Props) {
             </Label>
           </div>
         </motion.div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -142,70 +135,119 @@ export default function Pricing({ user, products, subscription }: Props) {
           viewport={{ once: true }}
           className="flex flex-1 gap-6 flex-col md:flex-row"
         >
-          {products.map((product) => {
-            const price = product?.prices?.find(
-              (price) => price.interval === billingInterval
-            );
-            if (!price) return null;
-            const priceString = new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: price.currency!,
-              minimumFractionDigits: 0,
-            }).format((price?.unit_amount || 0) / 100);
-            return (
-              <motion.div
-                key={product.id}
-                variants={itemVariants}
-                className={cn(
-                  "w-full flex flex-col rounded-xl border bg-background p-6 shadow-sm transition-all hover:shadow-md",
-                  {
-                    "border-primary md:scale-105": subscription
-                      ? product.name === subscription?.prices?.products?.name
-                      : product.name === "Freelancer",
-                  }
-                )}
+          {products.length !== 0 ? (
+            <motion.div
+              variants={itemVariants}
+              className="w-fit mx-auto text-center flex flex-col rounded-xl border bg-background p-6 shadow-sm transition-all hover:shadow-md"
+            >
+              <div className="mb-4">
+                <h3 className="text-xl font-bold">No Products Found</h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  It looks like you haven’t created any products yet. Click the
+                  button below to create one on Stripe.
+                </p>
+              </div>
+              <Button
+                variant="outline"
+                type="button"
+                className="w-fit mx-auto"
+                onClick={() =>
+                  window.open(
+                    "https://dashboard.stripe.com/products/new",
+                    "_blank"
+                  )
+                }
               >
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold">{product.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {product.description}
-                  </p>
-                </div>
-                <div className="mb-6">
-                  <div className="flex items-baseline">
-                    <span className="text-3xl font-bold">{priceString}</span>
-                    <span className="text-muted-foreground ml-1">
-                      /{billingInterval}
-                    </span>
-                  </div>
-                  {!annual ? (
-                    <p className="h-4 text-xs text-muted-foreground mt-1">
-                      Billed annually (
-                      {new Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: price.currency!,
-                        minimumFractionDigits: 0,
-                      }).format(((price?.unit_amount || 0) * 12) / 100)}
-                      /year)
-                    </p>
-                  ) : (
-                    <p className="h-4 mt-1"></p>
+                Create products on Stripe
+              </Button>
+            </motion.div>
+          ) : (
+            products.map((product) => {
+              const price = product?.prices?.find(
+                (price) => price.interval === billingInterval
+              );
+              if (!price) return null;
+              const priceString = new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: price.currency!,
+                minimumFractionDigits: 0,
+              }).format((price?.unit_amount || 0) / 100);
+              return (
+                <motion.div
+                  key={product.id}
+                  variants={itemVariants}
+                  className={cn(
+                    "w-full flex flex-col rounded-xl border bg-background p-6 shadow-sm transition-all hover:shadow-md",
+                    {
+                      "border-primary md:scale-105":
+                        product.name === subscription?.prices?.products?.name,
+                    }
                   )}
-                </div>
-                <Button
-                  variant={subscription ? "default" : "outline"}
-                  type="button"
-                  onClick={() => handleStripeCheckout(price)}
-                  className="w-full"
-                  disabled={priceIdLoading === price.id}
                 >
-                  {subscription ? "Manage" : "Get Started"}
-                </Button>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold">{product.name}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {product.description}
+                    </p>
+                  </div>
+                  <div className="mb-6">
+                    <div className="flex items-baseline">
+                      <span className="text-3xl font-bold">
+                        {annual
+                          ? new Intl.NumberFormat("en-US", {
+                              style: "currency",
+                              currency: price.currency!,
+                              minimumFractionDigits: 0,
+                            }).format((price?.unit_amount || 0) / 12 / 100)
+                          : priceString}
+                      </span>
+                      <span className="text-muted-foreground ml-1">/month</span>
+                    </div>
+                    {annual ? (
+                      <p className="h-4 text-xs text-muted-foreground mt-1">
+                        Billed annually (
+                        {new Intl.NumberFormat("en-US", {
+                          style: "currency",
+                          currency: price.currency!,
+                          minimumFractionDigits: 0,
+                        }).format((price?.unit_amount || 0) / 100)}
+                        /year)
+                      </p>
+                    ) : (
+                      <p className="h-4 mt-1"></p>
+                    )}
+                  </div>
+                  <ul className="mb-6 space-y-2 flex-1">
+                    {product?.marketing_features &&
+                      product.marketing_features.map((feature, j) => (
+                        <motion.li
+                          key={j}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.3 + j * 0.05 }}
+                          className="flex items-center gap-2"
+                        >
+                          <Check className="size-4 text-purple-500 flex-shrink-0" />
+                          <span className="text-sm">{feature.name}</span>
+                        </motion.li>
+                      ))}
+                  </ul>
 
+                  <Button
+                    variant={subscription ? "default" : "outline"}
+                    type="button"
+                    onClick={() => handleStripeCheckout(price)}
+                    className="w-full"
+                    disabled={priceIdLoading === price.id}
+                  >
+                    {subscription ? "Manage" : "Get Started"}
+                  </Button>
+                </motion.div>
+              );
+            })
+          )}
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
