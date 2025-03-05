@@ -3,12 +3,43 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  BarChart,
+  Users,
+  Layers,
+  Settings,
+  HelpCircle,
+  FileText,
+  BookOpen,
+  Headphones,
+  Building,
+  Award,
+  Briefcase,
+  Heart,
+  Newspaper,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "./language-switcher";
+import { useLocale } from "@/contexts/locale-context";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuGroup,
+} from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
+  const { t } = useLocale();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +48,50 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Main navigation items with submenus
+  const navItems = [
+    {
+      key: "solutions",
+      label: t("navigation.solutions"),
+      submenu: [
+        {
+          icon: <Building className="mr-2 h-4 w-4" />,
+          label: t("navigation.submenus.analytics"),
+          href: "#enterprise",
+        },
+        {
+          icon: <Briefcase className="mr-2 h-4 w-4" />,
+          label: t("navigation.submenus.teams"),
+          href: "#small-business",
+        },
+        {
+          icon: <Users className="mr-2 h-4 w-4" />,
+          label: t("navigation.submenus.teams"),
+          href: "#teams",
+        },
+        {
+          icon: <Award className="mr-2 h-4 w-4" />,
+          label: t("navigation.submenus.teams"),
+          href: "#startups",
+        },
+      ],
+    },
+
+    {
+      key: "pricing",
+      label: t("navigation.pricing"),
+      href: "#pricing",
+    },
+  ];
+
+  const toggleMobileSubmenu = (key: string) => {
+    if (openMobileSubmenu === key) {
+      setOpenMobileSubmenu(null);
+    } else {
+      setOpenMobileSubmenu(key);
+    }
+  };
 
   return (
     <motion.header
@@ -30,7 +105,7 @@ export function Navbar() {
       }`}
     >
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 z-10">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -48,31 +123,58 @@ export function Navbar() {
             transition={{ delay: 0.2 }}
             className="text-xl font-bold purple-gradient-text"
           >
-            Acme
+            Quantum
           </motion.span>
         </Link>
 
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
           <motion.nav
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="flex gap-6"
+            className="flex gap-6 items-center"
           >
-            {["Features", "Testimonials", "Pricing", "Blog"].map((item, i) => (
+            {navItems.map((item, i) => (
               <motion.div
-                key={item}
+                key={item.key}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.1 }}
-                whileHover={{ y: -3 }}
+                className="relative"
               >
-                <Link
-                  href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-purple-500"
-                >
-                  {item}
-                </Link>
+                {item.submenu ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-purple-500">
+                        {item.label}
+                        <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-56">
+                      <DropdownMenuGroup>
+                        {item.submenu.map((subItem, j) => (
+                          <DropdownMenuItem key={j} asChild>
+                            <Link
+                              href={subItem.href}
+                              className="flex items-center cursor-pointer"
+                            >
+                              {subItem.icon}
+                              <span>{subItem.label}</span>
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Link
+                    href={item.href || `#${item.key}`}
+                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-purple-500"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </motion.div>
             ))}
           </motion.nav>
@@ -83,65 +185,105 @@ export function Navbar() {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
-            <Link
-              href={"/sign-in"}
-              className="hover:text-purple-500 hover:bg-purple-100 h-9 rounded-md px-3 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            <LanguageSwitcher />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="hover:text-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900/20"
             >
-              Log in
-            </Link>
-            <Link
-              href={"/sign-up"}
-              className="bg-purple-500 hover:bg-purple-600 text-white h-9 rounded-md px-3 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              {t("common.login")}
+            </Button>
+            <Button
+              size="sm"
+              className="bg-purple-500 hover:bg-purple-600 text-white"
             >
-              Get Started
-            </Link>
+              {t("common.getStarted")}
+            </Button>
           </motion.div>
         </div>
 
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="md:hidden text-purple-500"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <X className="size-6" />
-          ) : (
-            <Menu className="size-6" />
-          )}
-        </motion.button>
+        {/* Mobile Menu Button */}
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-purple-500 z-10"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="size-6" />
+            ) : (
+              <Menu className="size-6" />
+            )}
+          </motion.button>
+        </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-background/95 backdrop-blur-md border-b"
+          className="md:hidden bg-background/95 backdrop-blur-md border-b fixed top-16 left-0 right-0 z-40 overflow-auto max-h-[calc(100vh-4rem)]"
         >
-          <div className="container py-4 px-4">
-            <nav className="flex flex-col gap-4">
-              {["Features", "Testimonials", "Pricing", "Blog"].map((item) => (
-                <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium py-2 text-muted-foreground transition-colors hover:text-purple-500"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item}
-                </Link>
+          <div className="container py-6 px-4">
+            <nav className="flex flex-col gap-1">
+              {navItems.map((item) => (
+                <div key={item.key} className="border-b border-muted">
+                  {item.submenu ? (
+                    <>
+                      <button
+                        onClick={() => toggleMobileSubmenu(item.key)}
+                        className="flex items-center justify-between w-full py-3 text-base font-medium text-foreground hover:text-purple-500"
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-200 ${
+                            openMobileSubmenu === item.key ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {openMobileSubmenu === item.key && (
+                        <div className="pl-4 pb-3 space-y-2">
+                          {item.submenu.map((subItem, j) => (
+                            <Link
+                              key={j}
+                              href={subItem.href}
+                              className="flex items-center py-2 text-sm text-muted-foreground hover:text-purple-500"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {subItem.icon}
+                              <span>{subItem.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href || `#${item.key}`}
+                      className="block py-3 text-base font-medium text-foreground hover:text-purple-500"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
               ))}
-              <div className="flex flex-col gap-2 pt-4 border-t">
+
+              <div className="flex flex-col gap-3 pt-4 mt-2">
                 <Button
                   variant="outline"
-                  className="w-full justify-start border-purple-200 hover:border-purple-500 hover:text-purple-500"
+                  className="w-full justify-center border-purple-200 hover:border-purple-500 hover:text-purple-500 py-6 dark:border-purple-800 dark:hover:border-purple-600"
                 >
-                  Log in
+                  {t("common.login")}
                 </Button>
-                <Button className="w-full justify-start bg-purple-500 hover:bg-purple-600 text-white">
-                  Get Started
+                <Button className="w-full justify-center bg-purple-500 hover:bg-purple-600 text-white py-6">
+                  {t("common.getStarted")}
                 </Button>
               </div>
             </nav>

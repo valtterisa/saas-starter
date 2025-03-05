@@ -1,0 +1,76 @@
+{
+  "common": {
+    "getStarted": "Commencer",
+    "learnMore": "En savoir plus",
+    "login": "Se connecter",
+    "signup": "S'inscrire",
+    "contactUs": "Contactez-nous",
+    "back": "Retour",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "loading": "Chargement...",
+    "search": "Rechercher",
+    "language": "Langue"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "features": "Fonctionnalités",
+    "testimonials": "Témoignages",
+    "pricing": "Tarifs",
+    "blog": "Blog",
+    "products": "Produits",
+    "solutions": "Solutions",
+    "resources": "Ressources",
+    "company": "Entreprise",
+    "submenus": {
+      "analytics": "Analytique",
+      "automation": "Automatisation",
+      "collaboration": "Collaboration",
+      "integrations": "Intégrations",
+      "enterprise": "Entreprise",
+      "smallBusiness": "Petite Entreprise",
+      "teams": "Équipes",
+      "startups": "Startups",
+      "documentation": "Documentation",
+      "guides": "Guides",
+      "helpCenter": "Centre d'Aide",
+      "aboutUs": "À Propos",
+      "careers": "Carrières",
+      "community": "Communauté",
+      "contact": "Contact"
+    }
+  },
+  "hero": {
+    "badge": "Nouvelles Fonctionnalités Disponibles",
+    "title": "Transformez votre flux de travail avec",
+    "brandName": "Quantum",
+    "subtitle": "La plateforme tout-en-un qui simplifie vos opérations, augmente la productivité et stimule la croissance de votre entreprise.",
+    "startForFree": "Commencer gratuitement",
+    "bookDemo": "Réserver une démo",
+    "noCreditCard": "Pas de carte de crédit requise",
+    "freeTrial": "Essai gratuit de 14 jours",
+    "cancelAnytime": "Annulez à tout moment",
+    "trustedBy": "APPROUVÉ PAR DES ENTREPRISES INNOVANTES"
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenue",
+      "subtitle": "Entrez vos identifiants pour accéder à votre compte",
+      "emailLabel": "Email",
+      "emailPlaceholder": "nom@exemple.com",
+      "passwordLabel": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié?",
+      "passwordPlaceholder": "••••••••",
+      "rememberMe": "Se souvenir de moi pendant 30 jours",
+      "signInButton": "Se connecter",
+      "signingIn": "Connexion en cours...",
+      "noAccount": "Vous n'avez pas de compte?",
+      "signUp": "S'inscrire",
+      "continueWith": "Continuer avec",
+      "or": "Ou continuer avec",
+      "backToHome": "Retour à l'accueil",
+      "secureLogin": "Connexion sécurisée",
+      "encryption": "Chiffrement de bout en bout"
+    }
+  }
+}

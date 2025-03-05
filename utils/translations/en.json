@@ -1,0 +1,76 @@
+{
+  "common": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "login": "Log in",
+    "signup": "Sign up",
+    "contactUs": "Contact us",
+    "back": "Back",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "search": "Search",
+    "language": "Language"
+  },
+  "navigation": {
+    "home": "Home",
+    "features": "Features",
+    "testimonials": "Testimonials",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "products": "Products",
+    "solutions": "Solutions",
+    "resources": "Resources",
+    "company": "Company",
+    "submenus": {
+      "analytics": "Analytics",
+      "automation": "Automation",
+      "collaboration": "Collaboration",
+      "integrations": "Integrations",
+      "enterprise": "Enterprise",
+      "smallBusiness": "Small Business",
+      "teams": "Teams",
+      "startups": "Startups",
+      "documentation": "Documentation",
+      "guides": "Guides",
+      "helpCenter": "Help Center",
+      "aboutUs": "About Us",
+      "careers": "Careers",
+      "community": "Community",
+      "contact": "Contact"
+    }
+  },
+  "hero": {
+    "badge": "New Features Available",
+    "title": "Transform your workflow with",
+    "brandName": "Quantum",
+    "subtitle": "The all-in-one platform that streamlines your operations, boosts productivity, and drives growth for your business.",
+    "startForFree": "Start for free",
+    "bookDemo": "Book a demo",
+    "noCreditCard": "No credit card required",
+    "freeTrial": "14-day free trial",
+    "cancelAnytime": "Cancel anytime",
+    "trustedBy": "TRUSTED BY INNOVATIVE COMPANIES"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Enter your credentials to access your account",
+      "emailLabel": "Email",
+      "emailPlaceholder": "name@example.com",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot password?",
+      "passwordPlaceholder": "••••••••",
+      "rememberMe": "Remember me for 30 days",
+      "signInButton": "Sign in",
+      "signingIn": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "continueWith": "Continue with",
+      "or": "Or continue with",
+      "backToHome": "Back to home",
+      "secureLogin": "Secure login",
+      "encryption": "End-to-end encryption"
+    }
+  }
+}

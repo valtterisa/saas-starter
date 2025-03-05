@@ -1,0 +1,76 @@
+{
+  "common": {
+    "getStarted": "Comenzar",
+    "learnMore": "Más información",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "contactUs": "Contáctanos",
+    "back": "Volver",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "loading": "Cargando...",
+    "search": "Buscar",
+    "language": "Idioma"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "features": "Características",
+    "testimonials": "Testimonios",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "products": "Productos",
+    "solutions": "Soluciones",
+    "resources": "Recursos",
+    "company": "Empresa",
+    "submenus": {
+      "analytics": "Análisis",
+      "automation": "Automatización",
+      "collaboration": "Colaboración",
+      "integrations": "Integraciones",
+      "enterprise": "Empresas",
+      "smallBusiness": "Pequeñas Empresas",
+      "teams": "Equipos",
+      "startups": "Startups",
+      "documentation": "Documentación",
+      "guides": "Guías",
+      "helpCenter": "Centro de Ayuda",
+      "aboutUs": "Sobre Nosotros",
+      "careers": "Carreras",
+      "community": "Comunidad",
+      "contact": "Contacto"
+    }
+  },
+  "hero": {
+    "badge": "Nuevas Funciones Disponibles",
+    "title": "Transforma tu flujo de trabajo con",
+    "brandName": "Quantum",
+    "subtitle": "La plataforma todo en uno que optimiza tus operaciones, aumenta la productividad y impulsa el crecimiento de tu negocio.",
+    "startForFree": "Comienza gratis",
+    "bookDemo": "Reservar demo",
+    "noCreditCard": "No se requiere tarjeta de crédito",
+    "freeTrial": "Prueba gratuita de 14 días",
+    "cancelAnytime": "Cancela cuando quieras",
+    "trustedBy": "CONFIADO POR EMPRESAS INNOVADORAS"
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Ingresa tus credenciales para acceder a tu cuenta",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "nombre@ejemplo.com",
+      "passwordLabel": "Contraseña",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "passwordPlaceholder": "••••••••",
+      "rememberMe": "Recuérdame por 30 días",
+      "signInButton": "Iniciar sesión",
+      "signingIn": "Iniciando sesión...",
+      "noAccount": "¿No tienes una cuenta?",
+      "signUp": "Regístrate",
+      "continueWith": "Continuar con",
+      "or": "O continuar con",
+      "backToHome": "Volver al inicio",
+      "secureLogin": "Inicio de sesión seguro",
+      "encryption": "Cifrado de extremo a extremo"
+    }
+  }
+}
