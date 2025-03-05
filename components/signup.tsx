@@ -94,6 +94,7 @@ export default function SignupPage() {
               <Label htmlFor="name">Full Name</Label>
               <Input
                 id="name"
+                name="name"
                 type="text"
                 placeholder="John Doe"
                 value={name}
@@ -106,6 +107,7 @@ export default function SignupPage() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="name@example.com"
                 value={email}
@@ -119,6 +121,7 @@ export default function SignupPage() {
               <div className="relative">
                 <Input
                   id="password"
+                  name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   value={password}

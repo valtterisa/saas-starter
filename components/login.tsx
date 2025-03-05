@@ -77,6 +77,7 @@ export default function LoginPage() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="name@example.com"
                 value={email}
@@ -98,6 +99,7 @@ export default function LoginPage() {
               <div className="relative">
                 <Input
                   id="password"
+                  name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   value={password}
@@ -121,14 +123,14 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <Button
+            <button
               type="submit"
               className="w-full bg-purple-500 hover:bg-purple-600 text-white py-6"
               disabled={isLoading}
               formAction={signInAction}
             >
               {isLoading ? "Signing in..." : "Sign in"}
-            </Button>
+            </button>
 
             <p className="text-center text-sm text-muted-foreground mt-4">
               Don't have an account?{" "}
