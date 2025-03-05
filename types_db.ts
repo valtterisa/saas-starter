@@ -1,4 +1,6 @@
-﻿export type Json =
+﻿import Stripe from "stripe";
+
+export type Json =
   | string
   | number
   | boolean
@@ -88,6 +90,7 @@ export interface Database {
           image: string | null;
           metadata: Json | null;
           name: string | null;
+          marketing_features?: Array<Stripe.Product.MarketingFeature> | null;
         };
         Insert: {
           active?: boolean | null;
@@ -96,6 +99,7 @@ export interface Database {
           image?: string | null;
           metadata?: Json | null;
           name?: string | null;
+          marketing_features?: Array<Stripe.Product.MarketingFeature> | null;
         };
         Update: {
           active?: boolean | null;
@@ -104,6 +108,7 @@ export interface Database {
           image?: string | null;
           metadata?: Json | null;
           name?: string | null;
+          marketing_features?: Array<Stripe.Product.MarketingFeature> | null;
         };
         Relationships: [];
       };
