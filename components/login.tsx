@@ -10,7 +10,7 @@ import { ArrowLeft, Eye, EyeOff, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signInAction } from "@/app/actions";
+import { signInAction } from "@/src/app/actions";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -150,10 +150,9 @@ export default function LoginPage() {
         >
           <div className="relative w-full max-w-lg aspect-square">
             <Image
-              src="/placeholder.svg?height=600&width=600"
+              src="https://picsum.photos/2000/3000"
               alt="Login illustration"
-              width={600}
-              height={600}
+              fill
               className="rounded-2xl shadow-2xl"
             />
 

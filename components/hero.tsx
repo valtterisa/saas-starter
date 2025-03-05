@@ -120,10 +120,9 @@ export function Hero() {
             <div className="relative mx-auto w-full max-w-[500px] aspect-[4/3]">
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-300/10 backdrop-blur-sm border border-purple-200 shadow-xl" />
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="https://picsum.photos/2000/3000"
                 alt="Dashboard Preview"
-                width={800}
-                height={600}
+                fill
                 className="relative rounded-xl shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-500"
               />
 
@@ -176,7 +175,7 @@ export function Hero() {
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="h-6 md:h-8 w-auto">
                 <Image
-                  src={`/placeholder-logo.svg`}
+                  src="https://picsum.photos/120/40"
                   alt={`Company logo ${i}`}
                   width={120}
                   height={40}

@@ -131,13 +131,12 @@ export function Features() {
             >
               <div className="relative mx-auto max-w-[500px] aspect-square">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-300/5 backdrop-blur-sm border border-purple-200 shadow-xl" />
-                {/* <Image
-                  src="/placeholder.svg?height=600&width=600"
+                <Image
+                  src="https://picsum.photos/2000/3000"
                   alt="Feature Highlight"
-                  width={600}
-                  height={600}
+                  fill
                   className="relative rounded-2xl shadow-2xl"
-                /> */}
+                />
 
                 {/* Decorative elements */}
                 <motion.div

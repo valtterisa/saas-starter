@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { signUpAction } from "@/app/actions";
+import { signUpAction } from "@/src/app/actions";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -228,10 +228,9 @@ export default function SignupPage() {
         >
           <div className="relative w-full max-w-lg">
             <Image
-              src="/placeholder.svg?height=600&width=600"
+              src="https://picsum.photos/2000/3000"
               alt="Signup illustration"
-              width={600}
-              height={600}
+              fill
               className="rounded-2xl shadow-2xl"
             />
 
