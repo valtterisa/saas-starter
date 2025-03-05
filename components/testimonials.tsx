@@ -80,7 +80,7 @@ export function Testimonials() {
         </motion.div>
 
         <div className="relative mx-auto max-w-4xl" ref={constraintsRef}>
-          <div className="relative h-[300px] sm:h-[250px] overflow-hidden">
+          <div className="relative h-[400px] md:h-[300px] overflow-hidden">
             <AnimatePresence custom={direction} initial={false}>
               <motion.div
                 key={current}
