@@ -22,8 +22,6 @@ import {
   Newspaper,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { LanguageSwitcher } from "./language-switcher";
-import { useLocale } from "@/contexts/locale-context";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,10 +29,10 @@ import {
   DropdownMenuTrigger,
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "next-intl";
 
 export function Navbar() {
-  const { t } = useLocale();
-
+  const t = useTranslations("Navigation");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(
@@ -50,40 +48,7 @@ export function Navbar() {
   }, []);
 
   // Main navigation items with submenus
-  const navItems = [
-    {
-      key: "solutions",
-      label: t("navigation.solutions"),
-      submenu: [
-        {
-          icon: <Building className="mr-2 h-4 w-4" />,
-          label: t("navigation.submenus.analytics"),
-          href: "#enterprise",
-        },
-        {
-          icon: <Briefcase className="mr-2 h-4 w-4" />,
-          label: t("navigation.submenus.teams"),
-          href: "#small-business",
-        },
-        {
-          icon: <Users className="mr-2 h-4 w-4" />,
-          label: t("navigation.submenus.teams"),
-          href: "#teams",
-        },
-        {
-          icon: <Award className="mr-2 h-4 w-4" />,
-          label: t("navigation.submenus.teams"),
-          href: "#startups",
-        },
-      ],
-    },
-
-    {
-      key: "pricing",
-      label: t("navigation.pricing"),
-      href: "#pricing",
-    },
-  ];
+  // const navItems = [];
 
   const toggleMobileSubmenu = (key: string) => {
     if (openMobileSubmenu === key) {
@@ -129,7 +94,7 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          <motion.nav
+          {/* <motion.nav
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -177,7 +142,7 @@ export function Navbar() {
                 )}
               </motion.div>
             ))}
-          </motion.nav>
+          </motion.nav> */}
 
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -185,26 +150,24 @@ export function Navbar() {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
-            <LanguageSwitcher />
             <Button
               variant="ghost"
               size="sm"
               className="hover:text-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900/20"
             >
-              {t("common.login")}
+              {t("login")}
             </Button>
             <Button
               size="sm"
               className="bg-purple-500 hover:bg-purple-600 text-white"
             >
-              {t("common.getStarted")}
+              {t("signup")}
             </Button>
           </motion.div>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
-          <LanguageSwitcher />
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -230,7 +193,7 @@ export function Navbar() {
           className="md:hidden bg-background/95 backdrop-blur-md border-b fixed top-16 left-0 right-0 z-40 overflow-auto max-h-[calc(100vh-4rem)]"
         >
           <div className="container py-6 px-4">
-            <nav className="flex flex-col gap-1">
+            {/* <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <div key={item.key} className="border-b border-muted">
                   {item.submenu ? (
@@ -286,7 +249,7 @@ export function Navbar() {
                   {t("common.getStarted")}
                 </Button>
               </div>
-            </nav>
+            </nav> */}
           </div>
         </motion.div>
       )}

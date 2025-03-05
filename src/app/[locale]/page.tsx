@@ -11,8 +11,13 @@ import {
   getSubscription,
   getUser,
 } from "@/utils/supabase/queries";
+import { setRequestLocale } from "next-intl/server";
 
-export default async function Home() {
+type Params = Promise<{ locale: string }>;
+
+export default async function Home({ params }: { params: Params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const supabase = await createClient();
   const [user, productsResult, subscription] = await Promise.all([
     getUser(supabase),
