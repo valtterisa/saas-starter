@@ -135,7 +135,7 @@ export default function Pricing({ user, products, subscription }: Props) {
           viewport={{ once: true }}
           className="flex flex-1 gap-6 flex-col md:flex-row"
         >
-          {products.length !== 0 ? (
+          {products.length === 0 ? (
             <motion.div
               variants={itemVariants}
               className="w-fit mx-auto text-center flex flex-col rounded-xl border bg-background p-6 shadow-sm transition-all hover:shadow-md"
@@ -162,7 +162,7 @@ export default function Pricing({ user, products, subscription }: Props) {
               </Button>
             </motion.div>
           ) : (
-            products.map((product) => {
+            products.map((product, index) => {
               const price = product?.prices?.find(
                 (price) => price.interval === billingInterval
               );
@@ -177,13 +177,22 @@ export default function Pricing({ user, products, subscription }: Props) {
                   key={product.id}
                   variants={itemVariants}
                   className={cn(
-                    "w-full flex flex-col rounded-xl border bg-background p-6 shadow-sm transition-all hover:shadow-md",
+                    "relative w-full flex flex-col rounded-xl border bg-background p-6 shadow-sm transition-all hover:shadow-md",
                     {
                       "border-primary md:scale-105":
                         product.name === subscription?.prices?.products?.name,
+                      "border-2 border-primary": index === 1, // extra styling for the second product
                     }
                   )}
                 >
+                  {/* Most Popular Badge */}
+                  {index === 1 && (
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        Most popular
+                      </span>
+                    </div>
+                  )}
                   <div className="mb-4">
                     <h3 className="text-xl font-bold">{product.name}</h3>
                     <p className="text-sm text-muted-foreground mt-1">
