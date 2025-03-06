@@ -1,15 +1,12 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import NavigationLink from "../ui/link";
-import { logoutUser } from "@/utils/supabase/queries";
-import { createClient } from "@/utils/supabase/client";
+import { signOutAction } from "@/src/app/actions";
 
 export function IconSidebar() {
   const pathname = usePathname();
-  const supabase = createClient();
 
   // Simplified navigation - just home and settings
   const navItems = [
@@ -92,7 +89,7 @@ export function IconSidebar() {
         <button
           className="p-2 rounded-md transition-colors group relative text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
           title="Logout"
-          onClick={() => logoutUser(supabase)}
+          onClick={() => signOutAction()}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

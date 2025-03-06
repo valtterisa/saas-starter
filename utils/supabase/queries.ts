@@ -9,11 +9,6 @@ export const getUser = cache(async (supabase: SupabaseClient) => {
   return user;
 });
 
-export const logoutUser = async (supabase: SupabaseClient) => {
-  const { error } = await supabase.auth.signOut();
-  return error;
-};
-
 export const getSubscription = cache(async (supabase: SupabaseClient) => {
   const { data: subscription, error } = await supabase
     .from("subscriptions")
