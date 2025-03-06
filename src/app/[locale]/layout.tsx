@@ -65,7 +65,7 @@ export default async function RootLayout({
       className={geistSans.className}
       suppressHydrationWarning
     >
-      <body className="bg-background text-foreground">
+      <body className="w-full bg-background text-foreground">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"

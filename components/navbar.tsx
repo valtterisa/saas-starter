@@ -31,11 +31,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "./locale-switcher";
-import { L } from "framer-motion/dist/types.d-6pKw1mTI";
 
 export function Navbar() {
   const t = useTranslations("Navigation");
   const [isScrolled, setIsScrolled] = useState(false);
+  // Control the open state for the desktop submenu
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(
     null
@@ -50,7 +51,39 @@ export function Navbar() {
   }, []);
 
   // Main navigation items with submenus
-  // const navItems = [];
+  const navItems = [
+    {
+      key: "solutions",
+      label: "Solutions",
+      submenu: [
+        {
+          icon: <Building className="mr-2 h-4 w-4" />,
+          label: "Analytics",
+          href: "#enterprise",
+        },
+        {
+          icon: <Briefcase className="mr-2 h-4 w-4" />,
+          label: "Small Business",
+          href: "#small-business",
+        },
+        {
+          icon: <Users className="mr-2 h-4 w-4" />,
+          label: "Teams",
+          href: "#teams",
+        },
+        {
+          icon: <Award className="mr-2 h-4 w-4" />,
+          label: "Startups",
+          href: "#startups",
+        },
+      ],
+    },
+    {
+      key: "pricing",
+      label: "Pricing",
+      href: "#pricing",
+    },
+  ];
 
   const toggleMobileSubmenu = (key: string) => {
     if (openMobileSubmenu === key) {
@@ -65,7 +98,7 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-md shadow-md"
           : "bg-transparent"
@@ -96,7 +129,7 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          {/* <motion.nav
+          <motion.nav
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -111,11 +144,17 @@ export function Navbar() {
                 className="relative"
               >
                 {item.submenu ? (
-                  <DropdownMenu>
+                  <DropdownMenu
+                    // Control the open state of the dropdown
+                    open={isSubmenuOpen}
+                    onOpenChange={setIsSubmenuOpen}
+                  >
                     <DropdownMenuTrigger asChild>
-                      <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-purple-500">
+                      <button className="inline-flex items-center whitespace-nowrap rounded-md focus:outline-none focus:ring-0 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 underline-offset-4 text-sm font-medium text-muted-foreground transition-colors hover:text-purple-500">
                         {item.label}
-                        <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+                        <ChevronDown
+                          className={`transform ${isSubmenuOpen ? "rotate-180" : ""} h-4 w-4 transition-transform duration-200`}
+                        />
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start" className="w-56">
@@ -123,12 +162,12 @@ export function Navbar() {
                         {item.submenu.map((subItem, j) => (
                           <DropdownMenuItem key={j} asChild>
                             <NavigationLink
-                              href={subItem.href}
+                              href="/"
                               className="flex items-center cursor-pointer"
                             >
                               {subItem.icon}
                               <span>{subItem.label}</span>
-                            </Link>
+                            </NavigationLink>
                           </DropdownMenuItem>
                         ))}
                       </DropdownMenuGroup>
@@ -136,15 +175,15 @@ export function Navbar() {
                   </DropdownMenu>
                 ) : (
                   <NavigationLink
-                    href={item.href || `#${item.key}`}
+                    href="/"
                     className="text-sm font-medium text-muted-foreground transition-colors hover:text-purple-500"
                   >
                     {item.label}
-                  </Link>
+                  </NavigationLink>
                 )}
               </motion.div>
             ))}
-          </motion.nav> */}
+          </motion.nav>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -152,9 +191,10 @@ export function Navbar() {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
-            {/* Comment this out for not having translations */}
             {/* <LocaleSwitcher /> */}
             <NavigationLink
+              size="sm"
+              variant="ghost"
               href="/login"
               className="hover:text-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900/20"
             >
@@ -163,6 +203,8 @@ export function Navbar() {
             <NavigationLink
               href="/signup"
               className="bg-purple-500 hover:bg-purple-600 text-white"
+              size="sm"
+              variant="default"
             >
               {t("signup")}
             </NavigationLink>
@@ -171,7 +213,6 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
-          {/* Comment this out for not having translations */}
           {/* <LocaleSwitcher /> */}
           <motion.button
             initial={{ opacity: 0 }}
@@ -198,7 +239,7 @@ export function Navbar() {
           className="md:hidden bg-background/95 backdrop-blur-md border-b fixed top-16 left-0 right-0 z-40 overflow-auto max-h-[calc(100vh-4rem)]"
         >
           <div className="container py-6 px-4">
-            {/* <nav className="flex flex-col gap-1">
+            <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <div key={item.key} className="border-b border-muted">
                   {item.submenu ? (
@@ -220,25 +261,25 @@ export function Navbar() {
                           {item.submenu.map((subItem, j) => (
                             <NavigationLink
                               key={j}
-                              href={subItem.href}
+                              href="/"
                               className="flex items-center py-2 text-sm text-muted-foreground hover:text-purple-500"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               {subItem.icon}
                               <span>{subItem.label}</span>
-                            </Link>
+                            </NavigationLink>
                           ))}
                         </div>
                       )}
                     </>
                   ) : (
                     <NavigationLink
-                      href={item.href || `#${item.key}`}
+                      href="/"
                       className="block py-3 text-base font-medium text-foreground hover:text-purple-500"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.label}
-                    </Link>
+                    </NavigationLink>
                   )}
                 </div>
               ))}
@@ -248,13 +289,13 @@ export function Navbar() {
                   variant="outline"
                   className="w-full justify-center border-purple-200 hover:border-purple-500 hover:text-purple-500 py-6 dark:border-purple-800 dark:hover:border-purple-600"
                 >
-                  {t("common.login")}
+                  {/* {t("common.login")} */}
                 </Button>
                 <Button className="w-full justify-center bg-purple-500 hover:bg-purple-600 text-white py-6">
-                  {t("common.getStarted")}
+                  {/* {t("common.getStarted")} */}
                 </Button>
               </div>
-            </nav> */}
+            </nav>
           </div>
         </motion.div>
       )}
