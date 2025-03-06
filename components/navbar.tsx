@@ -194,7 +194,9 @@ export function Navbar({ user }: { user?: User | null }) {
               className="flex items-center gap-2"
             >
               {/* <LocaleSwitcher /> */}
-              <p>Hey, {user.email}</p>
+              <NavigationLink size="sm" variant="default" href={"/dashboard"}>
+                Dashboard
+              </NavigationLink>
             </motion.div>
           ) : (
             <motion.div

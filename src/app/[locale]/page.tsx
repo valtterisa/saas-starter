@@ -13,6 +13,7 @@ import {
 } from "@/utils/supabase/queries";
 import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import Header from "@/components/header";
 
 type Params = Promise<{ locale: string }>;
 
@@ -36,6 +37,7 @@ export default async function Home({ params }: { params: Params }) {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-background to-background/80">
+      <Header />
       <main className="w-full">
         <Hero />
         <Features />
@@ -47,6 +49,7 @@ export default async function Home({ params }: { params: Params }) {
         />
         <Cta />
       </main>
+      <Footer />
     </div>
   );
 }

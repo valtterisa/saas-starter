@@ -27,6 +27,10 @@ export const routing = defineRouting({
       en: "/dashboard",
       fi: "/ohjauspaneeli",
     },
+    "/dashboard/settings": {
+      en: "/dashboard/settings",
+      fi: "/ohjauspaneeli/asetukset",
+    },
   },
 });
 
