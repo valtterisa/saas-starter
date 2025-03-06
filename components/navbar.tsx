@@ -152,7 +152,8 @@ export function Navbar() {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
-            <LocaleSwitcher />
+            {/* Comment this out for not having translations */}
+            {/* <LocaleSwitcher /> */}
             <Button
               variant="ghost"
               size="sm"
@@ -171,7 +172,8 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
-          <LocaleSwitcher />
+          {/* Comment this out for not having translations */}
+          {/* <LocaleSwitcher /> */}
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
