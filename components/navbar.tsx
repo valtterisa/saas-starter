@@ -31,8 +31,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "./locale-switcher";
+import { User } from "@supabase/supabase-js";
 
-export function Navbar() {
+export function Navbar({ user }: { user?: User | null }) {
   const t = useTranslations("Navigation");
   const [isScrolled, setIsScrolled] = useState(false);
   // Control the open state for the desktop submenu
@@ -185,30 +186,42 @@ export function Navbar() {
             ))}
           </motion.nav>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
-            className="flex items-center gap-2"
-          >
-            {/* <LocaleSwitcher /> */}
-            <NavigationLink
-              size="sm"
-              variant="ghost"
-              href="/login"
-              className="hover:text-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900/20"
+          {user ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center gap-2"
             >
-              {t("login")}
-            </NavigationLink>
-            <NavigationLink
-              href="/signup"
-              className="bg-purple-500 hover:bg-purple-600 text-white"
-              size="sm"
-              variant="default"
+              {/* <LocaleSwitcher /> */}
+              <p>Hey, {user.email}</p>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center gap-2"
             >
-              {t("signup")}
-            </NavigationLink>
-          </motion.div>
+              {/* <LocaleSwitcher /> */}
+              <NavigationLink
+                size="sm"
+                variant="ghost"
+                href="/login"
+                className="hover:text-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900/20"
+              >
+                {t("login")}
+              </NavigationLink>
+              <NavigationLink
+                href="/signup"
+                className="bg-purple-500 hover:bg-purple-600 text-white"
+                size="sm"
+                variant="default"
+              >
+                {t("signup")}
+              </NavigationLink>
+            </motion.div>
+          )}
         </div>
 
         {/* Mobile Menu Button */}

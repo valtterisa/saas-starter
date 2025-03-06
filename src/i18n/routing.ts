@@ -23,6 +23,10 @@ export const routing = defineRouting({
       en: "/forgot-password",
       fi: "/unohdin-salasanani",
     },
+    "/dashboard": {
+      en: "/dashboard",
+      fi: "/ohjauspaneeli",
+    },
   },
 });
 

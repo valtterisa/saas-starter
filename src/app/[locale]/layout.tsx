@@ -13,6 +13,7 @@ import {
 import { notFound } from "next/navigation";
 import { routing } from "@/src/i18n/routing";
 import { title } from "process";
+import Header from "@/components/header";
 
 export async function generateMetadata({
   params,
@@ -73,7 +74,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
+            <Header />
             <main className="min-h-screen w-full flex flex-col items-center">
               {children}
             </main>
