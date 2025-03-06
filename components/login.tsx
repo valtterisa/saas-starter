@@ -3,7 +3,6 @@
 import type React from "react";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Eye, EyeOff, Github } from "lucide-react";
@@ -11,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signInAction } from "@/src/app/actions";
+import NavigationLink from "./ui/link";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,13 +29,13 @@ export default function LoginPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <Link
+            <NavigationLink
               href="/"
               className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-purple-500 mb-6"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to home
-            </Link>
+            </NavigationLink>
             <h1 className="text-3xl font-bold">Welcome back</h1>
             <p className="text-muted-foreground mt-2">
               Enter your credentials to access your account
@@ -89,12 +89,12 @@ export default function LoginPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <Link
-                  href="/auth/forgot-password"
+                <NavigationLink
+                  href="/forgot-password"
                   className="text-xs text-purple-500 hover:underline"
                 >
                   Forgot password?
-                </Link>
+                </NavigationLink>
               </div>
               <div className="relative">
                 <Input
@@ -134,9 +134,12 @@ export default function LoginPage() {
 
             <p className="text-center text-sm text-muted-foreground mt-4">
               Don't have an account?{" "}
-              <Link href="/sign-up" className="text-purple-500 hover:underline">
+              <NavigationLink
+                href="/signup"
+                className="text-purple-500 hover:underline"
+              >
                 Sign up
-              </Link>
+              </NavigationLink>
             </p>
           </motion.form>
         </div>

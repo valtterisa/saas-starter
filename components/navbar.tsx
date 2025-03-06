@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import NavigationLink from "./ui/link";
 import { motion } from "framer-motion";
 import {
   Menu,
@@ -72,7 +72,7 @@ export function Navbar() {
       }`}
     >
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2 z-10">
+        <NavigationLink href="/" className="flex items-center gap-2 z-10">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -92,7 +92,7 @@ export function Navbar() {
           >
             Quantum
           </motion.span>
-        </Link>
+        </NavigationLink>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
@@ -122,7 +122,7 @@ export function Navbar() {
                       <DropdownMenuGroup>
                         {item.submenu.map((subItem, j) => (
                           <DropdownMenuItem key={j} asChild>
-                            <Link
+                            <NavigationLink
                               href={subItem.href}
                               className="flex items-center cursor-pointer"
                             >
@@ -135,7 +135,7 @@ export function Navbar() {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : (
-                  <Link
+                  <NavigationLink
                     href={item.href || `#${item.key}`}
                     className="text-sm font-medium text-muted-foreground transition-colors hover:text-purple-500"
                   >
@@ -154,19 +154,18 @@ export function Navbar() {
           >
             {/* Comment this out for not having translations */}
             {/* <LocaleSwitcher /> */}
-            <Button
-              variant="ghost"
-              size="sm"
+            <NavigationLink
+              href="/login"
               className="hover:text-purple-500 hover:bg-purple-100 dark:hover:bg-purple-900/20"
             >
               {t("login")}
-            </Button>
-            <Button
-              size="sm"
+            </NavigationLink>
+            <NavigationLink
+              href="/signup"
               className="bg-purple-500 hover:bg-purple-600 text-white"
             >
               {t("signup")}
-            </Button>
+            </NavigationLink>
           </motion.div>
         </div>
 
@@ -219,7 +218,7 @@ export function Navbar() {
                       {openMobileSubmenu === item.key && (
                         <div className="pl-4 pb-3 space-y-2">
                           {item.submenu.map((subItem, j) => (
-                            <Link
+                            <NavigationLink
                               key={j}
                               href={subItem.href}
                               className="flex items-center py-2 text-sm text-muted-foreground hover:text-purple-500"
@@ -233,7 +232,7 @@ export function Navbar() {
                       )}
                     </>
                   ) : (
-                    <Link
+                    <NavigationLink
                       href={item.href || `#${item.key}`}
                       className="block py-3 text-base font-medium text-foreground hover:text-purple-500"
                       onClick={() => setIsMobileMenuOpen(false)}

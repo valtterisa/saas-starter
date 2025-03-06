@@ -8,12 +8,20 @@ export const routing = defineRouting({
   // Used when no locale matches
   defaultLocale: "en",
 
-  // @TODO these need to be dynamically created here for all pages
+  // Add all the paths that should be localized here
   pathnames: {
     "/": "/",
-    "/pathnames": {
-      en: "/pathnames",
-      fi: "/polkunimet",
+    "/login": {
+      en: "/login",
+      fi: "/kirjaudu",
+    },
+    "/signup": {
+      en: "/signup",
+      fi: "/luo-tunnus",
+    },
+    "/forgot-password": {
+      en: "/forgot-password",
+      fi: "/unohdin-salasanani",
     },
   },
 });

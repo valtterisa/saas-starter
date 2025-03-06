@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
+import NavigationLink from "./ui/link";
 
 export function Footer() {
   const footerLinks = [
@@ -83,10 +83,10 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="col-span-full lg:col-span-1"
           >
-            <Link href="/" className="flex items-center gap-2 mb-4">
+            <NavigationLink href="/" className="flex items-center gap-2 mb-4">
               <div className="size-8 rounded-full bg-primary" />
               <span className="text-xl font-bold">Quantum</span>
-            </Link>
+            </NavigationLink>
             <p className="text-muted-foreground max-w-xs">
               Streamline your workflow and boost productivity with our
               all-in-one platform.
@@ -131,12 +131,13 @@ export function Footer() {
                         damping: 20,
                       }}
                     >
-                      <Link
-                        href={link.href}
+                      <NavigationLink
+                        // href={link.href}
+                        href="/"
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {link.name}
-                      </Link>
+                      </NavigationLink>
                     </motion.li>
                   ))}
                 </ul>
@@ -156,24 +157,24 @@ export function Footer() {
             © {new Date().getFullYear()} Quantum. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <Link
-              href="#"
+            <NavigationLink
+              href="/"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Privacy Policy
-            </Link>
-            <Link
-              href="#"
+            </NavigationLink>
+            <NavigationLink
+              href="/"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Terms of Service
-            </Link>
-            <Link
-              href="#"
+            </NavigationLink>
+            <NavigationLink
+              href="/"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Cookies
-            </Link>
+            </NavigationLink>
           </div>
           <ThemeSwitcher />
         </motion.div>

@@ -3,7 +3,6 @@
 import type React from "react";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Eye, EyeOff, Github, CheckCircle2 } from "lucide-react";
@@ -12,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { signUpAction } from "@/src/app/actions";
+import NavigationLink from "./ui/link";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,13 +46,13 @@ export default function SignupPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <Link
+            <NavigationLink
               href="/"
               className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-purple-500 mb-6"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to home
-            </Link>
+            </NavigationLink>
             <h1 className="text-3xl font-bold">Create an account</h1>
             <p className="text-muted-foreground mt-2">
               Enter your information to get started
@@ -189,13 +189,19 @@ export default function SignupPage() {
               />
               <Label htmlFor="terms" className="text-sm leading-tight">
                 I agree to the{" "}
-                <Link href="#" className="text-purple-500 hover:underline">
+                <NavigationLink
+                  href="/"
+                  className="text-purple-500 hover:underline"
+                >
                   Terms of Service
-                </Link>{" "}
+                </NavigationLink>{" "}
                 and{" "}
-                <Link href="#" className="text-purple-500 hover:underline">
+                <NavigationLink
+                  href="/"
+                  className="text-purple-500 hover:underline"
+                >
                   Privacy Policy
-                </Link>
+                </NavigationLink>
               </Label>
             </div>
 
@@ -210,12 +216,12 @@ export default function SignupPage() {
 
             <p className="text-center text-sm text-muted-foreground mt-4">
               Already have an account?{" "}
-              <Link
-                href="/auth/login"
+              <NavigationLink
+                href="/login"
                 className="text-purple-500 hover:underline"
               >
                 Sign in
-              </Link>
+              </NavigationLink>
             </p>
           </motion.form>
         </div>
