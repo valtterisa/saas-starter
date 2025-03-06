@@ -6,5 +6,9 @@
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, fi {🇫🇮 Finnish} en {🇺🇸 English} other {Unknown}}"
+  },
+  "LandingPage": {
+    "title": "Next.js + Supabase SaaS Starter",
+    "description": "A starter to build your SaaS application with Next.js and Supabase."
   }
 }

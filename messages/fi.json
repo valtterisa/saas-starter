@@ -6,5 +6,9 @@
   "LocaleSwitcher": {
     "label": "Vaihda kieli",
     "locale": "{locale, select, fi {🇫🇮 Suomi} en {🇺🇸 English} other {Tuntematon}}"
+  },
+  "LandingPage": {
+    "title": "Next.js + Supabase SaaS Starter",
+    "description": "Aloita SaaS-sovelluksesi rakentaminen Next.js:llä ja Supabasella."
   }
 }

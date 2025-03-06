@@ -12,12 +12,19 @@ import {
   getUser,
 } from "@/utils/supabase/queries";
 import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 type Params = Promise<{ locale: string }>;
 
 export default async function Home({ params }: { params: Params }) {
   const { locale } = await params;
+
+  // Static rendering of the page for SEO
   setRequestLocale(locale);
+
+  // Load translations
+  const t = useTranslations("LandingPage");
+
   const supabase = await createClient();
   const [user, productsResult, subscription] = await Promise.all([
     getUser(supabase),
