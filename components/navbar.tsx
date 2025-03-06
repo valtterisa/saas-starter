@@ -30,6 +30,8 @@ import {
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 import { useTranslations } from "next-intl";
+import LocaleSwitcher from "./locale-switcher";
+import { L } from "framer-motion/dist/types.d-6pKw1mTI";
 
 export function Navbar() {
   const t = useTranslations("Navigation");
@@ -150,6 +152,7 @@ export function Navbar() {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
+            <LocaleSwitcher />
             <Button
               variant="ghost"
               size="sm"
@@ -168,6 +171,7 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
+          <LocaleSwitcher />
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

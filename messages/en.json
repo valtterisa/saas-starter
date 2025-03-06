@@ -2,5 +2,9 @@
   "Navigation": {
     "login": "Log in",
     "signup": "Get Started"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, fi {🇫🇮 Finnish} en {🇺🇸 English} other {Unknown}}"
   }
 }
