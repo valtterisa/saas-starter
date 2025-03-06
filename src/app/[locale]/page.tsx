@@ -22,9 +22,6 @@ export default async function Home({ params }: { params: Params }) {
   // Static rendering of the page for SEO
   setRequestLocale(locale);
 
-  // Load translations
-  const t = useTranslations("LandingPage");
-
   const supabase = await createClient();
   const [user, productsResult, subscription] = await Promise.all([
     getUser(supabase),
